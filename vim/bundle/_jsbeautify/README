@@ -1,0 +1,72 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4063
+
+Another plugin to format your JavaScript source code
+
+I modified the jsbeautify.vim as I need. (Original jsbeautify.vim is here: http://www.vim.org/scripts/script.php?script_id=2727 ) (changes happened on lines 1, 4, 532, 534, 538, 540 and 503)
+
+
+{
+        a: 'a',
+        b: 'b'
+}
+
+Move the comma after Object's attribute to next line's front.
+
+{
+        a: 'a'
+        ,b: 'b'
+}
+ There won't be a newline after } , when it's in an Expression. Such as function({},{}).
+
+ Example for these 2 changes mentioned above:
+⇲
+var p_roleMutexGroupListGrid, p_assignedMutexRoleGrid, p_unassignedMutexRoleGrid, p_roleDetailsForm;
+var PID = pffp.setPID({}, {
+        /*若在維護中需要修改權限設置，請到全局配置文件中去修改。*/
+        roleMutexGroup_query: 101101
+        ,roleMutexGroupMember_query: 101201
+        ,roleMutexGroupMember_assign: 101202
+        ,roleMutexGroupMember_remove: 101203
+        ,roleMutexGroupMember_details: 101204
+        ,role_details: 100805
+});
+$(function() {
+        var array1 = [1, 2, 3];
+        var array2 = [];
+        for (var i = 0; i <= 3; i++) {
+                array2.push(i);
+        }
+        if ({
+                a: ''
+                ,b: ''
+                ,c: 2
+        } === {
+                b: ''
+                ,c: 2
+                ,a: ''
+        } && ['', '', 1] == ['', '', 1]) {
+                pffp.filterPermissionFunc({}, [PID.roleMutexGroup_query], [initRoleMutexGroupGrid])();//  There won be a newline after } , when it's in an Expression.
+        }
+});
+var initRoleMutexGroupGrid = function() {
+        p_roleMutexGroupListGrid = pffp.initGrid(null, {
+                id: 'roleMutexGroupListGrid'
+                ,confId: 'roleMutexGroupListGrid_conf'
+                ,topBtn: true
+                ,passParam: {}
+        }, RMGGridRowClick); //  There won be a newline after } , when it's in an Expression.
+}
+⇱ END
+
+
+
+This vim-script also works at a low performance:)  
+vim-jsbeautify : Simple javascript formater base on js-beautify  http://www.vim.org/scripts/script.php?script_id=4017(this one looks like the one which can be faster, but I haven't try it. )
+
+usage:
+  <leader>_ff
+or
+  bind the g:_Jsbeautify() function to any short key you like.
+
+Thanks jsbeautify.vim's author : aj3423          (as the name I know).
+(I just a beginner, don't know how to write a complete vim-script file. )
