@@ -6,6 +6,10 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="clean"
+VM_IP="172.16.63.128"
+PC_IP="10.0.0.43"
+EJTAG_PATH='/usr/local/comp/ejtag-debug'
+WORD='Hi I am codemonkey'
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -54,11 +58,12 @@ export PATH=$PATH:/usr/local/comp/gcc-3.4.6-2f/bin
 export PATH=$PATH:/usr/local/comp/gcc-4.3-ls232/bin
 export PATH=$PATH:/usr/local/comp
 
-export PATH=$PATH:/usr/local/comp/mips-elf/gcc-2.95.3/bin
-export PATH=$PATH:/opt/gcc-3.4.6-2f/bin
-export PATH=$PATH:/opt/gcc-4.3-ls232/bin
-export PATH=$PATH:/opt/gcc-4.4-64/bin
-export PATH=$PATH:/opt
+#ejtag debug
+export PATH=$PATH:/usr/local/comp/ejtag-debug/
+alias ejtagcfg='vim /usr/local/comp/ejtag-debug/ejtag.cfg'
+alias startkernel='cd $EJTAG_PATH && sudo ./ejtag_debug_usb < startkernel'
+alias startgdb='cd $EJTAG_PATH && sudo ./ejtag_debug_usb < startgdb'
+
 #android sdk
 export PATH=$PATH:/usr/bin/adt-bundle-linux-x86-20130729/sdk/tools
 export PATH=$PATH:/usr/bin/adt-bundle-linux-x86-20130727/sdk/platform-tools
@@ -70,5 +75,16 @@ alias tmux='tmux -2'
 alias rmgit='find . -name ".git" | xargs rm -rf'
 alias gls='git log --stat'
 alias gds='git diff --stat'
-alias mkcfgl='make cfg 2>~/.log/mkcfglog 1>/dev/null'
-alias mkroml='make tgt=rom 2>~/.log/mklog 1>/dev/null'
+
+#cmd alias
+alias mkcfg='make cfg 2>~/.log/mkcfglog 1>/dev/null'
+alias mkrom='make tgt=rom 2>~/.log/mklog 1>/dev/null'
+alias mvx2f7='sudo mount //$VM_IP/WindRiver2f32 ~/Workspace/src/vxworks_2F6.7'
+alias mvx3a7='sudo mount //$VM_IP/Windriver_3A6.7 ~/Workspace/src/vxworks_3A6.7'
+alias mvx3a8='sudo mount //$VM_IP/Windriver  ~/Workspace/src/vxworks_6.8'
+alias mpc='sudo mount //$PC_IP/workspace ~/Workspace/src/vxworks_pc' # for winxp
+#alias mpc='sudo mount //$PC_IP/workspace ~/Workspace/src/vxworks_pc -o username=Adminstrator' # for win7
+
+#remote win desktop
+#alias rwin='rdesktop -g 1440x900 -a 16 10.0.0.41 -u administrator -p loongson & '
+alias rwin='realvnc &'
